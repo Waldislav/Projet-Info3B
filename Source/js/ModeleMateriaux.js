@@ -38,3 +38,25 @@ function surfFilDeFer(ObjetGeometrique,coul,tailleFil) {
  let maillage = new THREE.Mesh(ObjetGeometrique, ProprieteFilDeFer);
  return maillage;
  }// fin fonction surfFilDeFer
+
+function Plan(largPlan,hautPlan,nbSegmentLarg,nbSegmentHaut,coulPlan,){
+      let largPlan = 25;
+      let hautPlan = 25;
+      let nbSegmentLarg= 30;
+      let nbSegmentHaut= 30;
+      let planGeometry = new THREE.PlaneGeometry(largPlan, hautPlan, nbSegmentLarg, nbSegmentHaut);
+      let MaterialPhong= new THREE.MeshPhongMaterial({
+      color: "#FF0000",
+      opacity: 1,
+      transparent: false,
+      emissive: 0x000000, 
+      specular: "#00FFFF",
+      flatShading: true,
+      shininess:30,        
+      side:THREE.DoubleSide
+      });
+      let planPhong = new THREE.Mesh(planGeometry, MaterialPhong);
+      planPhong.castShadow=true;
+      planPhong.receiveShadow= true;
+      return planPhong;
+}

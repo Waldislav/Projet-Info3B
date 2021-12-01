@@ -21,11 +21,11 @@ function init(){
  //
  //********************************************************
  
-  let r= 3/4;                //Rayon de la pierre
-  let coulPierre=0x777777;
-  let haut=0.30;
-  
-  PierreF(r,coulPierre,haut,scene,true);
+  initTerrain(scene);
+  let haut=3*(0.30/4)/2;          //permet de positionner le bas de la pierre sur un plan de coordonnée z=0         
+  let Pierre1=PierreF(false);
+
+
 
 
 

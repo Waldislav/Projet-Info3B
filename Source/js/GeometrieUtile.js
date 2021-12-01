@@ -85,7 +85,7 @@ function latheBezQuad(nbePtCbe, nbePtRot, tabP, coul, opacite, bolTranspa){
 			
 }
 
-function Tore(rayonCentre,rayonTube, nbPtsMeridien, nbPtsParallele, lgArc, coul, opacite, bolTranspa){
+function ToreF(rayonCentre,rayonTube, nbPtsMeridien, nbPtsParallele, lgArc, coul, opacite, bolTranspa){
 	let MaterialPhong=new THREE.MeshPhongMaterial({
 	  color: coul,
 	  opacity: opacite,
@@ -97,8 +97,40 @@ function Tore(rayonCentre,rayonTube, nbPtsMeridien, nbPtsParallele, lgArc, coul,
 	  side: THREE.DoubleSide
 	});
 	let ToreGeom=new THREE.TorusGeometry(rayonCentre, rayonTube, nbPtsMeridien, nbPtsParallele, lgArc);
-	let ToreM=new THREE.Mesh(ToreGeom, MaterialPhong);
+	var ToreM=new THREE.Mesh(ToreGeom, MaterialPhong);
 	return ToreM;
+  }
+
+  function CylindreF(rayon1,rayon2, haut, nbPtsCercle, nbPtsGenera, bolOuvert, theta0, thetaLg, coul, opacite, bolTranspa){
+	let MaterialPhong=new THREE.MeshPhongMaterial({
+	  color: coul,
+	  opacity: opacite,
+	  transparent: bolTranspa,
+	  emissive: 0x000000,
+	  specular: "#00FFFF",
+	  flatShadig: true,
+	  shininess: 30,
+	  side: THREE.DoubleSide
+	});
+	let CylConeGeom= new THREE.CylinderGeometry(rayon1, rayon2, haut, nbPtsCercle, nbPtsGenera, bolOuvert, theta0, thetaLg);
+	let CylMesh=new THREE.Mesh(CylConeGeom,MaterialPhong);
+	return CylMesh;
+  }
+
+  function SphereF(rayon, nbParallel, nbMeridien, phi0, phiLg, theta0,thetaLg, coul, opacite, bolTranspa){
+	let MaterialPhong=new THREE.MeshPhongMaterial({
+	  color: coul,
+	  opacity: opacite,
+	  transparent: bolTranspa,
+	  emissive: 0x000000,
+	  specular: "#00FFFF",
+	  flatShadig: true,
+	  shininess: 30,
+	  side: THREE.DoubleSide
+	});
+	let sphereGeom = new THREE.SphereGeometry(rayon, nbParallel, nbMeridien, phi0, phiLg, theta0, thetaLg);
+	let sphereMesh=new THREE.Mesh(sphereGeom,MaterialPhong);
+	return sphereMesh;
   }
 
 
@@ -186,36 +218,4 @@ function afficheVecteur(V,nom,lieu){
  document.getElementById(lieu).innerHTML+=mes;
 }
 
-/*
-function _mergeMeshes(meshes, toBufferGeometry) {
-
-    var finalGeometry,
-        materials = [],
-        mergedGeometry = new THREE.Geometry(),
-        mergeMaterial,
-        mergedMesh;
-
-    meshes.forEach(function(mesh, index) {
-        mesh.updateMatrix();
-        mesh.geometry.faces.forEach(function(face) {face.materialIndex = 0;});
-        mergedGeometry.merge(mesh.geometry, mesh.matrix, index);
-        materials.push(mesh.material);
-    });
-
-    mergedGeometry.groupsNeedUpdate = true;
-    mergeMaterial = new THREE.MeshFaceMaterial(materials);
-
-    if (toBufferGeometry) {
-        finalGeometry = new THREE.BufferGeometry().fromGeometry(mergedGeometry);
-    } else {
-        finalGeometry = mergedGeometry;
-    }
-
-    mergedMesh = new THREE.Mesh(finalGeometry, mergeMaterial);
-    mergedMesh.geometry.computeFaceNormals();
-    mergedMesh.geometry.computeVertexNormals();
-
-    return mergedMesh;
-}
-*/
 
