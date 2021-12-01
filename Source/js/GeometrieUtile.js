@@ -85,6 +85,21 @@ function latheBezQuad(nbePtCbe, nbePtRot, tabP, coul, opacite, bolTranspa){
 			
 }
 
+function Tore(rayonCentre,rayonTube, nbPtsMeridien, nbPtsParallele, lgArc, coul, opacite, bolTranspa){
+	let MaterialPhong=new THREE.MeshPhongMaterial({
+	  color: coul,
+	  opacity: opacite,
+	  transparent: bolTranspa,
+	  emissive: 0x000000,
+	  specular: "#00FFFF",
+	  flatShadig: true,
+	  shininess: 30,
+	  side: THREE.DoubleSide
+	});
+	let ToreGeom=new THREE.TorusGeometry(rayonCentre, rayonTube, nbPtsMeridien, nbPtsParallele, lgArc);
+	let ToreM=new THREE.Mesh(ToreGeom, MaterialPhong);
+	return ToreM;
+  }
 
 
 

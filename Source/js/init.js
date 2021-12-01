@@ -1,5 +1,6 @@
 const borneVue=6;//amplitude de deplacement de la camera
 
+
 function init(){
  var stats = initStats();
     // creation de rendu et de la taille
