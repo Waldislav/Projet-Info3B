@@ -35,22 +35,22 @@
   let ptTab2=[R1,Q1,Q2,Q3];
   let ptTab3=[P3,R0,R1];
 
-  let Lathe1=latheBezCub(50, 100, ptTab, coulEquipe, 1/2, false);
-  let Lathe2=latheBezQuad(50, 100, ptTab3, coulPierre, 1/2, false);
-  let Lathe3=latheBezCub(50, 100, ptTab2, coulPierre, 1/2, false);
+  let Lathe1=latheBezCub(50, 100, ptTab, coulEquipe, 1/2, false,30);
+  let Lathe2=latheBezQuad(50, 100, ptTab3, coulPierre, 1/2, false,5);
+  let Lathe3=latheBezCub(50, 100, ptTab2, coulPierre, 1/2, false,5);
 
   let Poignee = new THREE.Group();
   let rayonCentre=rayonTube*2;
   let lgArc=Math.PI/4;
 
-  let Tore=ToreF(rayonCentre,rayonTube, 50, 50, lgArc, coulEquipe, 1, false);
+  let Tore=ToreF(rayonCentre,rayonTube, 50, 50, lgArc, coulEquipe, 1, false,30);
 
 	let nbPtsCercle=60;
 	let nbPtsGenera=2;
 	let bolOuvert=true;
 	let theta0=0;
 	let thetaLg=2*Math.PI;
-  let Cylindre=CylindreF(rayonTube,rayonTube, hauteur, nbPtsCercle, nbPtsGenera, bolOuvert, theta0, thetaLg, coulEquipe, 1, false);
+  let Cylindre=CylindreF(rayonTube,rayonTube, hauteur, nbPtsCercle, nbPtsGenera, bolOuvert, theta0, thetaLg, coulEquipe, 1, false,30);
   Cylindre.position.set(Cylindre.position.x,Cylindre.position.y-hauteur/2,Cylindre.position.z)
   Tore.position.set(Tore.position.x-2*rayonTube,Tore.position.y,Tore.position.z)
   
@@ -62,9 +62,9 @@
   Poignee.rotateZ(2*Math.PI);
   Poignee.position.set(rayonTube,rayonTube,0);
 
-  let SuitePoignee1=CylindreF(rayonTube,rayonTube, hauteur, nbPtsCercle, nbPtsGenera, bolOuvert, theta0, thetaLg, coulEquipe, 1, false);
-  let SuitePoignee2=ToreF(rayonCentre,rayonTube, 50, 50, lgArc, coulEquipe, 1, false);
-  let SpherePoignee=SphereF(rayonTube, 50, 50, 0, 2*Math.PI, 0,Math.PI/2, coulEquipe, 1, false);
+  let SuitePoignee1=CylindreF(rayonTube,rayonTube, hauteur, nbPtsCercle, nbPtsGenera, bolOuvert, theta0, thetaLg, coulEquipe, 1, false,30);
+  let SuitePoignee2=ToreF(rayonCentre,rayonTube, 50, 50, lgArc, coulEquipe, 1, false,30);
+  let SpherePoignee=SphereF(rayonTube, 50, 50, 0, 2*Math.PI, 0,Math.PI/2, coulEquipe, 1, false),30;
   SpherePoignee.position.set(0.3,0.3,0);
   let SuitePoignee=new THREE.Group();
   SuitePoignee.add(SuitePoignee1);
@@ -105,8 +105,11 @@
 
 
 
-function initTerrain(){
-
-  
+function initTerrain(scene){
+  let Sol=PlanF(100,100,20,20,0xEEEEEE,5);
+  scene.add(Sol);
+  Sol.position(0,0,0.01);
+  let Terrain=PlanF(7.5/2,73/2,20,20,0xFFFFFF,20);
+  scene.add(Terrain);
 
 }

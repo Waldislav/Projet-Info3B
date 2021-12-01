@@ -1,9 +1,9 @@
  function cameraLumiere(scene,camera){   // creation de la camera 
   camera.up = new THREE.Vector3( 0, 0, 1 );
-  var xPos=borneVue;
+  var xPos=1;
   //modification de la jauge si document.forms["controle"].PosX.value;
   var yPos=borneVue;//document.forms["controle"].PosY.value;//*document.forms["controle"].zoom.value;
-  var zPos=borneVue;//document.forms["controle"].PosZ.value;//*document.forms["controle"].zoom.value;
+  var zPos=borneVue/4;//document.forms["controle"].PosZ.value;//*document.forms["controle"].zoom.value;
   var xDir=0;//document.forms["controle"].DirX.value;
   var yDir=0;//document.forms["controle"].DirY.value;
   var zDir=0;//testZero(document.forms["controle"].DirZ.value);
@@ -126,125 +126,32 @@ function planRepere(scene){
 //
 //*************************************************************
  function lumiere(scene){
-    let lumPt = new THREE.PointLight(0xff55ff);
-   /* const d = 100;
-    lumPt.castShadow = true;
-    lumPt.shadow.camera.left = - d;
-    lumPt.shadow.camera.right = d;
-    lumPt.shadow.camera.top = d;
-    lumPt.shadow.camera.bottom = - d;*/
-    //light.position.y = 1.5;
-    lumPt.position.set(3,3,-3);
-    lumPt.intensity = 1;
-    lumPt.shadow.camera.far=2000;
-    lumPt.shadow.camera.near=0;
-   // scene.add(lumPt);
-    let lumPt1 = new THREE.PointLight(0xffffff);
+    let lumPt1 = new THREE.PointLight(0xFFFFFF);
     lumPt1.castShadow = true;
     lumPt1.shadow.camera.far=2000;
-    lumPt1.shadow.camera.near=0;
-  /*  lumPt1.shadow.camera.left = - d;
+    lumPt1.shadow.camera.near=-1;
+    /*lumPt1.shadow.camera.left = - d;
     lumPt1.shadow.camera.right = d;
     lumPt1.shadow.camera.top = d;
     lumPt1.shadow.camera.bottom = - d;*/
     //light.position.y = 1.5;
-    lumPt1.position.set(5,5,15);
+    lumPt1.position.set(30,30,20);
     lumPt1.intensity = 1;
     scene.add(lumPt1);
- /*   
-    let lumDir = new THREE.DirectionalLight(0xfffffff, 0.5);
-lumDir.position.set(0, 4, 0);
-lumDir.castShadow = true;
-lumDir.shadow.mapSize.width = 512;  
-lumDir.shadow.mapSize.height = 512; 
-lumDir.shadow.camera.near = 0.5;
-lumDir.shadow.camera.far = 500     
 
-//scene.add(new THREE.*/
- // add spotlight for the shadows
-  let dCon=0.1;
-  let spotConique1 = new THREE.SpotLight(0x44FF44);
-  spotConique1.position.set(1, 1, 3);
-  spotConique1.target.position.set(1,1,0);
-  spotConique1.target.updateMatrixWorld();// actualisation de "target"
-  spotConique1.castShadow = true;
-  spotConique1.shadow.camera.left = -dCon;
-  spotConique1.shadow.camera.right = dCon;
-  spotConique1.shadow.camera.top = dCon;
-  spotConique1.shadow.camera.bottom = -dCon;
-  spotConique1.shadow.camera.near =0.2;
-  spotConique1.shadow.camera.far =80;
-  spotConique1.shadow.camera.fov = 120;
-  spotConique1.shadow.radius = 1;
-  spotConique1.intensity = 0.5;
-  spotConique1.angle = Math.PI/12;
-  spotConique1.shadow.mapSize = new THREE.Vector2(Math.pow(2,10), Math.pow(2,10));
-  scene.add(spotConique1);
-  // affichage du cone de lumiere en "fil de fer"
- // var visualisationConeSpot = new THREE.SpotLightHelper(spotConique1);
- // scene.add(visualisationConeSpot);
+    let lumPt2 = new THREE.PointLight(0xFFFFFF);
+    lumPt2.castShadow = true;
+    lumPt2.shadow.camera.far=2000;
+    lumPt2.shadow.camera.near=-1;
+    /*lumPt1.shadow.camera.left = - d;
+    lumPt1.shadow.camera.right = d;
+    lumPt1.shadow.camera.top = d;
+    lumPt1.shadow.camera.bottom = - d;*/
+    //light.position.y = 1.5;
+    lumPt2.position.set(-50,-50,10);
+    lumPt2.intensity = 1;
+    scene.add(lumPt2);
 
-  // add spotlight for the shadows
-  let dCon1=0.1;
-  let spotConique2 = new THREE.SpotLight(0x4444FF);
-  spotConique2.position.set(4, 1, 1);
-  spotConique2.target.position.set(0,1,1);
-  spotConique2.target.updateMatrixWorld();// actualisation de "target"
-  spotConique2.castShadow = true;
-  spotConique2.shadow.camera.left = -dCon1;
-  spotConique2.shadow.camera.right = dCon1;
-  spotConique2.shadow.camera.top = dCon1;
-  spotConique2.shadow.camera.bottom = -dCon1;
-  spotConique2.shadow.camera.far=80;
-  spotConique2.shadow.camera.near=0.2;
-  spotConique2.shadow.radius = 10;
-  spotConique2.intensity = 0.5;
-  spotConique2.angle = Math.PI/12;
-  spotConique2.shadow.mapSize = new THREE.Vector2(Math.pow(2,10), Math.pow(2,10)); 
-  //spotConique2.onlyShadow = true;
-  scene.add(spotConique2);
-  // affichage du cone de lumiere en "fil de fer"
- // var visualisationConeSpot1 = new THREE.SpotLightHelper(spotConique2);
- // scene.add(visualisationConeSpot1);
-    
- /*   // add spotlight for the shadows
-    var spotConique12 = new THREE.SpotLight(0xFF4411);
-  spotConique12.castShadow = true;
-  spotConique12.shadow.camera.far=2000;
-  spotConique12.shadow.camera.near=0;
-  spotConique12.position.set(-1, -10, 0);
-  spotConique12.target.position.set(0,0,0);
-  spotConique12.castShadow = true;
-  spotConique12.shadow.mapSize = new THREE.Vector2(1024, 1024);
- // scene.add(spotConique12);
-  // If you want a more detailled shadow you can increase the 
-  // mapSize used to draw the shadows.
-  // spotConique1.shadow.mapSize = new THREE.Vector2(1024, 1024);
-  var ambienLight = new THREE.AmbientLight(0x222222);
-  scene.add(ambienLight);*/
- 
- 
-  const dCyl=0.2;
-  let LumiereDirectionnelle = new THREE.DirectionalLight(0x8888FF);
-  LumiereDirectionnelle.position.set(1, 10, 1);
-  LumiereDirectionnelle.target.position.set(1,0,1);
-  //LumiereDirectionnelle.position.set(1, 1, 2);
-  //LumiereDirectionnelle.target.position.set(1,1,0);
-  LumiereDirectionnelle.target.updateMatrixWorld();// actualisation de "target"
-  LumiereDirectionnelle.castShadow = true;
-  LumiereDirectionnelle.shadow.camera.near = 0.2;
-  LumiereDirectionnelle.shadow.camera.far = 200;
-  LumiereDirectionnelle.shadow.camera.left = -dCyl;
-  LumiereDirectionnelle.shadow.camera.right = dCyl;
-  LumiereDirectionnelle.shadow.camera.top = dCyl;
-  LumiereDirectionnelle.shadow.camera.bottom = -dCyl;
 
-  LumiereDirectionnelle.intensity = 0.5;
-  LumiereDirectionnelle.shadow.mapSize.width = Math.pow(2,10);
-  LumiereDirectionnelle.shadow.mapSize.height = Math.pow(2,10);
 
-  scene.add(LumiereDirectionnelle);
-  //var VisualisationLumiereDirectionnelle = new THREE.CameraHelper(LumiereDirectionnelle.shadow.camera)
-  //scene.add(VisualisationLumiereDirectionnelle);
-  
 }

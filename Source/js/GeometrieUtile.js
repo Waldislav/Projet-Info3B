@@ -47,7 +47,7 @@ function TraceBezierQuadratique(tabPt, nbPts, coul, epaiCbe){
 	return(BezierQuadratique);
 }
 
-function latheBezCub(nbePtCbe, nbePtRot, tabP, coul, opacite, bolTranspa){
+function latheBezCub(nbePtCbe, nbePtRot, tabP, coul, opacite, bolTranspa,shini){
 	let cbeBez=new THREE.CubicBezierCurve3(tabP[0], tabP[1], tabP[2], tabP[3]);
 	let tabPtCourbe=cbeBez.getPoints(nbePtCbe);
 	let latheGeometry=new THREE.LatheGeometry(tabPtCourbe, nbePtRot, 0, 2*Math.PI);	
@@ -56,9 +56,9 @@ function latheBezCub(nbePtCbe, nbePtRot, tabP, coul, opacite, bolTranspa){
 		opacity: opacite,
 		transparent: bolTranspa,
 		emissive: 0x000000,
-		specular: "#00FFFF",
+		specular: "#FFFFFF",
 		flatShadig: true,
-		shininess: 30,
+		shininess: shini,
 		side: THREE.DoubleSide
 	});
 	let LatheBez=new THREE.Mesh(latheGeometry, MaterialPhong);
@@ -66,7 +66,7 @@ function latheBezCub(nbePtCbe, nbePtRot, tabP, coul, opacite, bolTranspa){
 			
 }
 
-function latheBezQuad(nbePtCbe, nbePtRot, tabP, coul, opacite, bolTranspa){
+function latheBezQuad(nbePtCbe, nbePtRot, tabP, coul, opacite, bolTranspa,shini){
 	let cbeBez=new THREE.QuadraticBezierCurve3(tabP[0], tabP[1], tabP[2]);
 	let tabPtCourbe=cbeBez.getPoints(nbePtCbe);
 	let latheGeometry=new THREE.LatheGeometry(tabPtCourbe, nbePtRot, 0, 2*Math.PI);	
@@ -75,9 +75,9 @@ function latheBezQuad(nbePtCbe, nbePtRot, tabP, coul, opacite, bolTranspa){
 		opacity: opacite,
 		transparent: bolTranspa,
 		emissive: 0x000000,
-		specular: "#00FFFF",
+		specular: "#FFFFFF",
 		flatShadig: true,
-		shininess: 30,
+		shininess: shini,
 		side: THREE.DoubleSide
 	});
 	let LatheBez=new THREE.Mesh(latheGeometry, MaterialPhong);
@@ -85,15 +85,15 @@ function latheBezQuad(nbePtCbe, nbePtRot, tabP, coul, opacite, bolTranspa){
 			
 }
 
-function ToreF(rayonCentre,rayonTube, nbPtsMeridien, nbPtsParallele, lgArc, coul, opacite, bolTranspa){
+function ToreF(rayonCentre,rayonTube, nbPtsMeridien, nbPtsParallele, lgArc, coul, opacite, bolTranspa,shini){
 	let MaterialPhong=new THREE.MeshPhongMaterial({
 	  color: coul,
 	  opacity: opacite,
 	  transparent: bolTranspa,
 	  emissive: 0x000000,
-	  specular: "#00FFFF",
+	  specular: "#FFFFFF",
 	  flatShadig: true,
-	  shininess: 30,
+	  shininess: shini,
 	  side: THREE.DoubleSide
 	});
 	let ToreGeom=new THREE.TorusGeometry(rayonCentre, rayonTube, nbPtsMeridien, nbPtsParallele, lgArc);
@@ -101,15 +101,15 @@ function ToreF(rayonCentre,rayonTube, nbPtsMeridien, nbPtsParallele, lgArc, coul
 	return ToreM;
   }
 
-  function CylindreF(rayon1,rayon2, haut, nbPtsCercle, nbPtsGenera, bolOuvert, theta0, thetaLg, coul, opacite, bolTranspa){
+  function CylindreF(rayon1,rayon2, haut, nbPtsCercle, nbPtsGenera, bolOuvert, theta0, thetaLg, coul, opacite, bolTranspa,shini){
 	let MaterialPhong=new THREE.MeshPhongMaterial({
 	  color: coul,
 	  opacity: opacite,
 	  transparent: bolTranspa,
 	  emissive: 0x000000,
-	  specular: "#00FFFF",
+	  specular: "#FFFFFF",
 	  flatShadig: true,
-	  shininess: 30,
+	  shininess: shini,
 	  side: THREE.DoubleSide
 	});
 	let CylConeGeom= new THREE.CylinderGeometry(rayon1, rayon2, haut, nbPtsCercle, nbPtsGenera, bolOuvert, theta0, thetaLg);
@@ -117,15 +117,15 @@ function ToreF(rayonCentre,rayonTube, nbPtsMeridien, nbPtsParallele, lgArc, coul
 	return CylMesh;
   }
 
-  function SphereF(rayon, nbParallel, nbMeridien, phi0, phiLg, theta0,thetaLg, coul, opacite, bolTranspa){
+  function SphereF(rayon, nbParallel, nbMeridien, phi0, phiLg, theta0,thetaLg, coul, opacite, bolTranspa,shini){
 	let MaterialPhong=new THREE.MeshPhongMaterial({
 	  color: coul,
 	  opacity: opacite,
 	  transparent: bolTranspa,
 	  emissive: 0x000000,
-	  specular: "#00FFFF",
+	  specular: "#FFFFFF",
 	  flatShadig: true,
-	  shininess: 30,
+	  shininess: shini,
 	  side: THREE.DoubleSide
 	});
 	let sphereGeom = new THREE.SphereGeometry(rayon, nbParallel, nbMeridien, phi0, phiLg, theta0, thetaLg);
@@ -218,4 +218,22 @@ function afficheVecteur(V,nom,lieu){
  document.getElementById(lieu).innerHTML+=mes;
 }
 
+
+function PlanF(largPlan,hautPlan,nbSegmentLarg,nbSegmentHaut,coulPlan,shini){
+	let planGeometry = new THREE.PlaneGeometry(largPlan, hautPlan, nbSegmentLarg, nbSegmentHaut);
+	let MaterialPhong= new THREE.MeshPhongMaterial({
+	color: coulPlan,
+	opacity: 1,
+	transparent: false,
+	emissive: 0x000000, 
+	specular: "#00FFFF",
+	flatShading: true,
+	shininess:shini,        
+	side:THREE.DoubleSide
+	});
+	let planPhong = new THREE.Mesh(planGeometry, MaterialPhong);
+	planPhong.castShadow=true;
+	planPhong.receiveShadow= true;
+	return planPhong;
+}
 

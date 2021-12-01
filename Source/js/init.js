@@ -1,4 +1,4 @@
-const borneVue=6;//amplitude de deplacement de la camera
+const borneVue=40;//amplitude de deplacement de la camera
 
 
 function init(){
@@ -24,6 +24,7 @@ function init(){
   initTerrain(scene);
   let haut=3*(0.30/4)/2;          //permet de positionner le bas de la pierre sur un plan de coordonnée z=0         
   let Pierre1=PierreF(false);
+  scene.add(Pierre1);
 
 
 
