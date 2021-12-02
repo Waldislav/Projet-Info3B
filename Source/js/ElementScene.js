@@ -157,6 +157,7 @@ function Maison(){
   return Maison;
 }
 
-function BallaisF(){
+function BallaisF(scene){
+  
 
 }

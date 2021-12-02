@@ -263,3 +263,35 @@ function CourbeF(tabPoints,coul,epai){
 	return courbePara;
 }
 
+function ParalleliF(larg,haut,prof,coul,booltransp,op,shini){
+	let BoiteGeom=new THREE.BoxGeometry(larg, haut, prof, 10, 10, 10);
+	let MaterialPhong= new THREE.MeshPhongMaterial({
+		color: coul,
+		opacity: op,
+		transparent: booltransp,
+		emissive: 0x000000, 
+		specular: "#FFFFFF",
+		flatShading: true,
+		shininess:shini,        
+		side:THREE.DoubleSide
+	});
+	let Parallel=new THREE.Mesh(BoiteGeom,MaterialPhong);
+	return Parallel;
+}
+
+function ConeF(r,h,nbPtsCercle,bolOuvert,theta0,thetaLg,coul,booltransp,op,shini){
+	let CylConeGeom= new THREE.CylinderGeometry(r, h, nbPtsCercle, 2, bolOuvert, theta0, thetaLg);
+	let MaterialPhong= new THREE.MeshPhongMaterial({
+		color: coul,
+		opacity: op,
+		transparent: booltransp,
+		emissive: 0x000000, 
+		specular: "#FFFFFF",
+		flatShading: true,
+		shininess:shini,        
+		side:THREE.DoubleSide
+	});
+	let Cone=new THREE.Mesh(CylConeGeom,MaterialPhong);
+	return Cone;
+}
+
