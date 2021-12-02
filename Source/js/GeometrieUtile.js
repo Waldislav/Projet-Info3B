@@ -279,8 +279,8 @@ function ParalleliF(larg,haut,prof,coul,booltransp,op,shini){
 	return Parallel;
 }
 
-function ConeF(r,h,nbPtsCercle,bolOuvert,theta0,thetaLg,coul,booltransp,op,shini){
-	let CylConeGeom= new THREE.CylinderGeometry(r, h, nbPtsCercle, 2, bolOuvert, theta0, thetaLg);
+function ConeF(r1,r2,h,nbPtsCercle,bolOuvert,theta0,thetaLg,coul,booltransp,op,shini){
+	let CylConeGeom= new THREE.CylinderGeometry(r1,r2, h, nbPtsCercle, 2, bolOuvert, theta0, thetaLg);
 	let MaterialPhong= new THREE.MeshPhongMaterial({
 		color: coul,
 		opacity: op,

@@ -1,9 +1,9 @@
  function cameraLumiere(scene,camera){   // creation de la camera 
   camera.up = new THREE.Vector3( 0, 0, 1 );
-  var xPos=1;
+  var xPos=0;
   //modification de la jauge si document.forms["controle"].PosX.value;
-  var yPos=borneVue;//document.forms["controle"].PosY.value;//*document.forms["controle"].zoom.value;
-  var zPos=borneVue/4;//document.forms["controle"].PosZ.value;//*document.forms["controle"].zoom.value;
+  var yPos=-borneVue;//document.forms["controle"].PosY.value;//*document.forms["controle"].zoom.value;
+  var zPos=borneVue/3;//document.forms["controle"].PosZ.value;//*document.forms["controle"].zoom.value;
   var xDir=0;//document.forms["controle"].DirX.value;
   var yDir=0;//document.forms["controle"].DirY.value;
   var zDir=0;//testZero(document.forms["controle"].DirZ.value);
