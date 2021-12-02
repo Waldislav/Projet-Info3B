@@ -64,7 +64,7 @@
 
   let SuitePoignee1=CylindreF(rayonTube,rayonTube, hauteur, nbPtsCercle, nbPtsGenera, bolOuvert, theta0, thetaLg, coulEquipe, 1, false,30);
   let SuitePoignee2=ToreF(rayonCentre,rayonTube, 50, 50, lgArc, coulEquipe, 1, false,30);
-  let SpherePoignee=SphereF(rayonTube, 50, 50, 0, 2*Math.PI, 0,Math.PI/2, coulEquipe, 1, false),30;
+  let SpherePoignee=SphereF(rayonTube, 50, 50, 0, 2*Math.PI, 0,Math.PI/2, coulEquipe, 1, false,30);
   SpherePoignee.position.set(0.3,0.3,0);
   let SuitePoignee=new THREE.Group();
   SuitePoignee.add(SuitePoignee1);
@@ -100,16 +100,63 @@
 
   BasePierre.add(Poignee);
 
+  BasePierre.rotateY(-Math.PI/2);
+
   return BasePierre;
 }
 
 
 
 function initTerrain(scene){
-  let Sol=PlanF(100,100,20,20,0xEEEEEE,5);
+  let Sol=PlanF(100,100,20,20,0xAAAAAA,5);
   scene.add(Sol);
-  Sol.position(0,0,0.01);
-  let Terrain=PlanF(7.5/2,73/2,20,20,0xFFFFFF,20);
+  Sol.position.set(0,0,-0.01);
+  let P0=new THREE.Vector3((8.5/2)/2,(73/2)/2,0);
+  let P1=new THREE.Vector3((-8.5/2)/2,(73/2)/2,0);
+  let P2=new THREE.Vector3((8.5/2)/2,(-73/2)/2,0);
+  let P3=new THREE.Vector3((-8.5/2)/2,(-73/2)/2,0);
+  tabPoints=[P0,P1,P3,P2,P0];
+  let CourbeSol=CourbeF(tabPoints,0x222222,3);
+  scene.add(CourbeSol);
+  let Terrain=PlanF(8.5/2,73/2,20,20,0xFFFFFF,30);
   scene.add(Terrain);
+
+  let Maison1=Maison();
+  scene.add(Maison1);
+  let Maison2=Maison();
+  Maison2.position.set(0,-Maison2.position.y,0.01);
+  scene.add(Maison2);
+
+}
+
+function Maison(){
+  let rayon=(3/4)/4;
+  rayon=rayon*1.1;
+  let Cercle1=CercleF(rayon,50,0,2*Math.PI,0xFFFFFF,30);
+  Cercle1.position.set(0,0,0.01118);
+
+  rayon=rayon*2.1;
+  let Cercle2=CercleF(rayon,50,0,2*Math.PI,0xFF0000,30);
+  Cercle2.position.set(0,0,0.0111);
+
+  rayon=rayon*1.9;
+  let Cercle3=CercleF(rayon,50,0,2*Math.PI,0xFFFFFF,30);
+  Cercle3.position.set(0,0,0.011);
+
+  rayon=rayon*1.5;
+  let Cercle4=CercleF(rayon,50,0,2*Math.PI,0x0000FF,30);
+  Cercle4.position.set(0,0,0.01);
+
+  let Maison=new THREE.Group();
+  Maison.add(Cercle1);
+  Maison.add(Cercle2);
+  Maison.add(Cercle3);
+  Maison.add(Cercle4);
+  Maison.position.set(0,(-(73/2)/2)+5,0.01);
+
+  return Maison;
+}
+
+function BallaisF(){
 
 }

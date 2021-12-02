@@ -225,8 +225,8 @@ function PlanF(largPlan,hautPlan,nbSegmentLarg,nbSegmentHaut,coulPlan,shini){
 	color: coulPlan,
 	opacity: 1,
 	transparent: false,
-	emissive: 0x000000, 
-	specular: "#00FFFF",
+	emissive: 0x444444, 
+	specular: "#FFFFFF",
 	flatShading: true,
 	shininess:shini,        
 	side:THREE.DoubleSide
@@ -235,5 +235,31 @@ function PlanF(largPlan,hautPlan,nbSegmentLarg,nbSegmentHaut,coulPlan,shini){
 	planPhong.castShadow=true;
 	planPhong.receiveShadow= true;
 	return planPhong;
+}
+
+function CercleF(rayon,nbSegments,theta0,thetaLg,coul,shini){
+	let CercleGeo=new THREE.CircleGeometry(rayon, nbSegments, theta0, thetaLg);
+	let MaterialPhong= new THREE.MeshPhongMaterial({
+		color: coul,
+		opacity: 1,
+		transparent: false,
+		emissive: 0x000000, 
+		specular: "#FFFFFF",
+		flatShading: true,
+		shininess:shini,        
+		side:THREE.DoubleSide
+	});
+	let CercleMesh=new THREE.Mesh(CercleGeo,MaterialPhong);
+	return CercleMesh;
+}
+
+function CourbeF(tabPoints,coul,epai){
+	let PtsTab=new THREE.BufferGeometry().setFromPoints(tabPoints);
+	let ProprieteCbe=new THREE.LineBasicMaterial({
+	color:coul,
+	linewidth: epai   //epaisseur en pixels
+	});
+	let courbePara=new THREE.Line(PtsTab, ProprieteCbe);
+	return courbePara;
 }
 
