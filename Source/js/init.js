@@ -1,4 +1,29 @@
+<<<<<<< Updated upstream
 const borneVue=6;//amplitude de deplacement de la camera
+=======
+const borneVue=30;//amplitude de deplacement de la camera
+const PosInitial=new THREE.Vector3(0,-16.25,0);
+const PosLancer=new THREE.Vector3(0,-4,0); 
+
+let Pierre1=PierreF(true);
+var haut=Pierre1.position.z;  //permet de positionner le bas de la pierre sur un plan de coordonnée z=0 
+let Balai1=BalaisF();
+let Balai2=BalaisF();
+
+let tabPierreR = [];
+  for(var i=0;i<5;i++){
+    let Pierre=PierreF(true);
+    Pierre.position.set(0,PosInitial.y,haut);
+    tabPierreR.push(Pierre);
+  }
+
+  let tabPierreB = [];
+  for(var i=0;i<5;i++){
+    let Pierre=PierreF(false);
+    Pierre.position.set(0,PosInitial.y,haut);
+    tabPierreB.push(Pierre);
+  }
+>>>>>>> Stashed changes
 
 
 function init(){
@@ -21,11 +46,44 @@ function init(){
  //
  //********************************************************
  
+<<<<<<< Updated upstream
   initTerrain(scene);
   let haut=3*(0.30/4)/2;          //permet de positionner le bas de la pierre sur un plan de coordonnée z=0         
   let Pierre1=PierreF(false);
 
 
+=======
+  initTerrain(scene);   
+  
+  //tracePt(scene, PosInitial, 0xFF0000,0.1);
+  //alert(Pierre1.position.z);
+  Pierre1.position.set(0,PosInitial.y,haut);
+  Balai1.position.set(Balai1.position.x-haut,Balai1.position.y+PosLancer.y+0.3,Balai1.position.z);
+  Balai2.rotateZ(Math.PI);
+  Balai2.position.set(Balai2.position.x+haut,Balai2.position.y+PosLancer.y+1,Balai2.position.z);
+  //scene.add(Pierre1);
+  scene.add(Balai1);
+  scene.add(Balai2);
+
+  let A=new THREE.Vector3(0,0,0.1);
+  let B=new THREE.Vector3(-0.5,-6,0.1);
+  let C=new THREE.Vector3(0.5,6,0.1);
+  let Fin=new THREE.Vector3(0,16,0.1);
+  let Fin2=new THREE.Vector3(1,14.5,0.1);
+  let Fin3=new THREE.Vector3(0.75,12,0.1);
+  let B2=new THREE.Vector3(1,-4,0.1);
+  let C2=new THREE.Vector3(-1,4,0.1);
+  tabPoints1=[PosInitial,B,A];
+  tabPoints2=[A,C,Fin];
+  tabPoints3=[A,C,Fin2];
+  tabPoints4=[PosInitial,B2,A];
+  tabPoints5=[A,C2,Fin3];
+
+  let bez=TraceBezierQuadratique(tabPoints1, 50, 0xFF0000, 3);
+  //scene.add(bez);
+  let bez2=TraceBezierQuadratique(tabPoints2, 50, 0xFF0000, 3);
+  //scene.add(bez2);
+>>>>>>> Stashed changes
 
 
 
@@ -94,9 +152,23 @@ function init(){
   
  
  function reAffichage() {
+<<<<<<< Updated upstream
   setTimeout(function () { 
  
   }, 200);// fin setTimeout(function ()
+=======
+  setTimeout(function () {
+    switch(ordre){
+      case 0 : MouvementBezier(tabPierreB[0],tabPoints1,tabPoints2,scene,false);break;
+      case 1 : MouvementRectiligne(tabPierreR[0],-0.1,13.25,scene);break;
+      case 2 : MouvementRectiligne(tabPierreB[1],0.05,14,scene);break;
+      case 3 : MouvementBezier(tabPierreR[1],tabPoints1,tabPoints3,scene,false);break;
+      case 4 : MouvementBezier(tabPierreB[2],tabPoints4,tabPoints5,scene,false);break;
+      case 5 : MouvementRectiligne(tabPierreR[2],0,13.5,scene);break;
+      //case 1 : MouvementRectiligne(tabPierreB[3],-0.1,13.25,scene); Choc(tabPierreB[3],tabPierreR[0]); break;
+    }
+  }, 1000);// fin setTimeout(function ()
+>>>>>>> Stashed changes
     // render avec requestAnimationFrame
   rendu.render(scene, camera);
  }// fin fonction reAffichage()

@@ -133,6 +133,12 @@ function ToreF(rayonCentre,rayonTube, nbPtsMeridien, nbPtsParallele, lgArc, coul
 	return sphereMesh;
   }
 
+function testColineaire(A,B,C){
+    let AB=vecteurRetroune(A,B);
+    let AC=vecteurRetroune(A,C);
+    return AB.x*AC.y-AB.y*AC.x==0;
+}
+
 
 
 //segment AB
@@ -186,14 +192,14 @@ function vecteur(MaScene,A,B,CoulHexa,longCone,RayonCone){
 }
 
 //retour le vecteur AB qui est une fleche sans l'afficher
-function vecteurRetroune(MaScene,A,B,CoulHexa,longCone,RayonCone){
+function vecteurRetroune(A,B){
  var vecAB = new THREE.Vector3( B.x-A.x, B.y-A.y, B.z-A.z );
  vecAB.normalize();
  return(vecAB);
 }
 
 //retour le vecteur  normal unitaire a une face sans l'afficher
-function vecteurProdVecRetroune(MaScene,A,u,v,CoulHexa,longCone,RayonCone){
+function vecteurProdVecRetroune(MaScene,A,u,v,longCone,RayonCone){
  let w = new THREE.Vector3(0,0,0);
  let C = new THREE.Vector3(0,0,0);
  w.crossVectors(u,v);
