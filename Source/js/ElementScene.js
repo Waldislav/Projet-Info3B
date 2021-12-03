@@ -99,7 +99,7 @@
 
   BasePierre.add(Poignee);
 
-  BasePierre.rotateY(-Math.PI/2);
+  BasePierre.rotateY(Math.PI/2);
 
   return BasePierre;
 }

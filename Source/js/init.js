@@ -1,4 +1,9 @@
-const borneVue=5;//amplitude de deplacement de la camera
+const borneVue=30;//amplitude de deplacement de la camera
+const PosInitial=new THREE.Vector3(0,-16.25,0);
+const PosLancer=new THREE.Vector3(0,0,0); 
+
+
+
 
 
 function init(){
@@ -23,9 +28,11 @@ function init(){
  
   initTerrain(scene);        
   let Pierre1=PierreF(true);
-  let haut=Pierre1.position.z;  //permet de positionner le bas de la pierre sur un plan de coordonnée z=0  
+  let haut=Pierre1.position.z;  //permet de positionner le bas de la pierre sur un plan de coordonnée z=0 
+  //tracePt(scene, PosInitial, 0xFF0000,0.1);
+  //alert(Pierre1.position.z);
+  Pierre1.position.set(0,PosInitial.y,haut);
   scene.add(Pierre1);
-  Pierre1.position.set(0,0,haut);
   let Balais1=BalaisF();
   //scene.add(Balais1);
 
@@ -52,9 +59,9 @@ function init(){
    this.camerazPos = camera.position.z;
    this.cameraZoom = 1;
    //pb avec camera lockAt
-   this.cameraxDir = 0;//camera.getWorldDirection().x;
-   this.camerayDir = 0;//camera.getWorldDirection().y;
-   this.camerazDir = 0;//camera.getWorldDirection().z;
+   this.cameraxDir = PosInitial.x;//camera.getWorldDirection().x;
+   this.camerayDir = PosInitial.y;//camera.getWorldDirection().y;
+   this.camerazDir = 1;//camera.getWorldDirection().z;
    this.cameraFar = 100; //distance du plan le plus loin
    this.cameraNear = 0.1; //distance du plan le plus proche
    this.cameraFov = 90;// angle de vision de 90°
@@ -64,6 +71,52 @@ function init(){
     posCamera();
     reAffichage();
    }; // fin this.actualisation
+   this.Scene1=function(){
+    this.cameraxPos = 0;
+    this.camerayPos = -26;
+    this.camerazPos = 2;
+    this.cameraZoom = 1;
+    this.cameraxDir = 0;
+    this.camerayDir = PosInitial.y;
+    this.camerazDir = 1;
+    camera.position.set(0,-26,2);
+    camera.lookAt(0,-16,1);
+   }
+
+   this.Scene2=function(){
+    this.cameraxPos = 15;
+    this.camerayPos = 25;
+    this.camerazPos = 10;
+    this.cameraZoom = 1;
+    this.cameraxDir = 0;
+    this.camerayDir = 0;
+    this.camerazDir = 0;
+    camera.position.set(15,25,10);
+    camera.lookAt(0,0,0);
+   }
+
+   this.Scene3=function(){
+    this.cameraxPos = 15;
+    this.camerayPos = 25;
+    this.camerazPos = 10;
+    this.cameraZoom = 1;
+    this.cameraxDir = 0;
+    this.camerayDir = 0;
+    this.camerazDir = 0;
+    camera.position.set(15,-25,10);
+    camera.lookAt(0,0,0);
+   }
+   this.Scene4=function(){
+    this.cameraxPos = 0;
+    this.camerayPos = 15;
+    this.camerazPos = 30;
+    this.cameraZoom = 1;
+    this.cameraxDir = 0;
+    this.camerayDir = 13.5;
+    this.camerazDir = 0;
+    camera.position.set(0,15,30);
+    camera.lookAt(0,13.5,0);
+   }
  }; // fin de la fonction menuGUI
  // ajout de la camera dans le menu
  ajoutCameraGui(gui,menuGUI,camera)
@@ -80,6 +133,7 @@ function init(){
  
  //ajout du menu pour actualiser l'affichage 
  gui.add(menuGUI, "actualisation");
+  //gui.addFolder("Test");
  menuGUI.actualisation();
  //********************************************************
  //
@@ -94,12 +148,12 @@ function init(){
    
   // affichage de la scene
  rendu.render(scene, camera);
-  
- 
+
  function reAffichage() {
   setTimeout(function () { 
- 
-  }, 200);// fin setTimeout(function ()
+    MouvementRectiligne(10);
+  
+  }, 1000);// fin setTimeout(function ()
     // render avec requestAnimationFrame
   rendu.render(scene, camera);
  }// fin fonction reAffichage()
@@ -107,6 +161,7 @@ function init(){
  
   function renduAnim() {
     stats.update();
+    reAffichage();
     // render avec requestAnimationFrame
     requestAnimationFrame(renduAnim);
 // ajoute le rendu dans l'element HTML

@@ -2,11 +2,11 @@
   camera.up = new THREE.Vector3( 0, 0, 1 );
   var xPos=0;
   //modification de la jauge si document.forms["controle"].PosX.value;
-  var yPos=-borneVue;//document.forms["controle"].PosY.value;//*document.forms["controle"].zoom.value;
-  var zPos=borneVue/3;//document.forms["controle"].PosZ.value;//*document.forms["controle"].zoom.value;
-  var xDir=0;//document.forms["controle"].DirX.value;
-  var yDir=0;//document.forms["controle"].DirY.value;
-  var zDir=0;//testZero(document.forms["controle"].DirZ.value);
+  var yPos=-26;//document.forms["controle"].PosY.value;//*document.forms["controle"].zoom.value;
+  var zPos=2;//document.forms["controle"].PosZ.value;//*document.forms["controle"].zoom.value;
+  var xDir=PosInitial.x;//document.forms["controle"].DirX.value;
+  var yDir=PosInitial.y;//document.forms["controle"].DirY.value;
+  var zDir=PosInitial.z;//testZero(document.forms["controle"].DirZ.value);
   camera.position.set(xPos, yPos, zPos);
   camera.lookAt(xDir, yDir, zDir);
   actuaPosCameraHTML(xPos, yPos, zPos,xDir, yDir, zDir);
@@ -84,6 +84,13 @@
     actuaPosCameraHTML(menuGUI.cameraxPos, menuGUI.camerayPos, menuGUI.camerazPos,menuGUI.cameraxDir,menuGUI.camerayDir, menuGUI.camerazDir);
     camera.lookAt(testZero(menuGUI.cameraxDir), testZero(menuGUI.camerayDir), testZero(menuGUI.camerazDir))
   });
+
+  
+
+  guiCamera.add(menuGUI,"Scene1");
+  guiCamera.add(menuGUI,"Scene2");
+  guiCamera.add(menuGUI,"Scene3");
+  guiCamera.add(menuGUI,"Scene4");
  /*guiCamera.add(menuGUI,"cameraxDir",-borneVue,borneVue).onChange(posCamera());
  guiCamera.add(menuGUI,"camerayDir",-borneVue,borneVue).onChange(posCamera());
  guiCamera.add(menuGUI,"camerazDir",-borneVue,borneVue).onChange(posCamera());*/
