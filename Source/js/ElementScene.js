@@ -1,4 +1,11 @@
-function PierreF(equipe){
+//********************************************************
+ //
+ //  CREATION PIERRE
+ //
+ //********************************************************
+
+
+ function PierreF(equipe){
 
   let r= (3/4)/4;                //Rayon de la pierre
   let haut=0.30/4;
