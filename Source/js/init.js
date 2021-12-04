@@ -1,6 +1,4 @@
-<<<<<<< Updated upstream
-const borneVue=6;//amplitude de deplacement de la camera
-=======
+
 const borneVue=30;//amplitude de deplacement de la camera
 const PosInitial=new THREE.Vector3(0,-16.25,0);
 const PosLancer=new THREE.Vector3(0,-4,0); 
@@ -23,7 +21,6 @@ let tabPierreR = [];
     Pierre.position.set(0,PosInitial.y,haut);
     tabPierreB.push(Pierre);
   }
->>>>>>> Stashed changes
 
 
 function init(){
@@ -46,13 +43,6 @@ function init(){
  //
  //********************************************************
  
-<<<<<<< Updated upstream
-  initTerrain(scene);
-  let haut=3*(0.30/4)/2;          //permet de positionner le bas de la pierre sur un plan de coordonnée z=0         
-  let Pierre1=PierreF(false);
-
-
-=======
   initTerrain(scene);   
   
   //tracePt(scene, PosInitial, 0xFF0000,0.1);
@@ -83,7 +73,6 @@ function init(){
   //scene.add(bez);
   let bez2=TraceBezierQuadratique(tabPoints2, 50, 0xFF0000, 3);
   //scene.add(bez2);
->>>>>>> Stashed changes
 
 
 
@@ -152,11 +141,7 @@ function init(){
   
  
  function reAffichage() {
-<<<<<<< Updated upstream
-  setTimeout(function () { 
- 
-  }, 200);// fin setTimeout(function ()
-=======
+
   setTimeout(function () {
     switch(ordre){
       case 0 : MouvementBezier(tabPierreB[0],tabPoints1,tabPoints2,scene,false);break;
@@ -168,7 +153,7 @@ function init(){
       //case 1 : MouvementRectiligne(tabPierreB[3],-0.1,13.25,scene); Choc(tabPierreB[3],tabPierreR[0]); break;
     }
   }, 1000);// fin setTimeout(function ()
->>>>>>> Stashed changes
+
     // render avec requestAnimationFrame
   rendu.render(scene, camera);
  }// fin fonction reAffichage()
